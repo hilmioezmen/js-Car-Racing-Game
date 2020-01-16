@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Car Racing</title>
+</head>
+
+<body>
+
+    <div style="display:block; margin:0; padding:0; width:1005px; height:400px;" id="container">
+
+        <div id="box" style="float:left; display:block; margin:0; padding:0; width:920px; height:400px;">
+            <img id="imgBlueCar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw5wRzOS3NmdppQdVlySAxpvpkNl1KW-yTg5VLxZCI7dIUxtKF&s" style="position:absolute; left:81px; top:100px" width="100" height="60" alt="blue">
+            <img id="imgRedCar" src="https://inventory-dmg.assets-cdk.com/RTTBrandHero/rtt_brand_hero:2019:Chevrolet:Cruze:1BS68:GAN/mmgprod-us/dynres/prove/singlelayer/pngs/optionImagery/US/chevrolet/2019/1BS68/gmds2/Cruze_HATCH_1BS68_1SF_GAN.jpg" style="position:absolute; left:81px; top:250px"
+                width="100" height="60" alt="red">
+        </div>
+        <div id="left" style="float:left; display:block; margin:0; padding:0; width:80px; height:400px">
+            <img id="imgStartButton" src="https://www.freeiconspng.com/uploads/green-start-button-png-2.png" width="60" height="60">
+        </div>
+        <div id="right" style="float:left; display:block; margin:0; padding:0; width:5px; height:400px; background-color:black;">
+        </div>
+    </div>
+    <div class="sonuc">
+        <h1 id="sonucyaz"></h1>
+    </div>
+
+
+
+
+    <script>
+        window.onload = function() {
+            var redSpeed = 1 * (Math.floor((Math.random() * 10) + 1));
+            var blueSpeed = 1 * (Math.floor((Math.random() * 10) + 1));
+            var blueLeft = 81;
+            var redLeft = 81;
+            var redInterval = 10;
+            var blueInterval = 10;
+            var redTimer;
+            var blueTimer;
+            var startRaceButton = document.getElementById("imgStartButton");
+            var redCar = document.getElementById("imgRedCar");
+            var blueCar = document.getElementById("imgBlueCar");
+
+            var goRed = function() {
+                redCar.style.left = redLeft + "px";
+                redLeft += redSpeed;
+                if (redLeft > 899) {
+                    clearInterval(redTimer);
+                }
+            }
+            var goBlue = function() {
+                blueCar.style.left = blueLeft + "px";
+                blueLeft += blueSpeed;
+                if (blueLeft > 899) {
+                    clearInterval(blueTimer);
+                }
+            }
+
+            var startRed = function() {
+                redTimer = setInterval(goRed, redInterval);
+            }
+
+            var startBlue = function() {
+                blueTimer = setInterval(goBlue, blueInterval);
+            }
+
+            startRaceButton.onclick = function() {
+                startRed();
+                startBlue();
+            }
+
+            var ergebniss = function() {
+
+                if (redSpeed > 899) {
+                    document.getElementById('sonucyaz').innerHTML = "Kirmizi Arac Kazandi.";
+
+                } else if (blueSpeed > 899) {
+                    document.getElementById('sonucyaz').innerHTML = "Mavi Arac Kazandi.";
+                } else {
+                    document.getElementById('sonucyaz').innerHTML = "Berabere Kaldilar.";
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>
